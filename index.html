@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-
-h1 {text-align: center;}
-div {text-align:  center;}
-
-body{
-    background-image: url("https://images.pexels.com/photos/597909/pexels-photo-597909.jpeg?cs=srgb&dl=pexels-kai-pilger-597909.jpg&fm=jpg");
-    
-    background-size: cover;
-    background-repeat: no-repeat;
-}  
-
-.personal_info{
-    
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-top: 5%;
-    
-    background-color: rgba(0,0,0,0.5);
-    
-    background-position: center;
-    border-radius: 50px;
-
-    background-size:cover;
-    
-    color: rgb(0, 255, 0);
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    
-}   
-
-</style>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Giới thiệu bản thân</title>
+  <style>
+    h1 {color: rgb(0, 153, 31); font-size: 24px; text-align: center;}
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý thông tin sinh viên</title>
 </head>
 <body>
-<div class="personal_info">
-    <br>
-    <h1>Thông tin cá nhân</h1>
-    <div id="avt">
-        <img src="https://hips.hearstapps.com/hmg-prod/images/chris-hemsworth-poses-during-a-photo-call-for-thor-ragnarok-on-october-15-2017-in-sydney-australia-photo-by-mark-metcalfe_getty-images-for-disney-square.jpg" alt="Duong Minh Phuong" width="300" height="300">
+    <h1>Quản lý thông tin sinh viên</h1>
+    <div class="input-group">
+        <label for="numStudents">Nhập số lượng sinh viên:</label>
+        <input type="number" id="numStudents" min="0" inputmode="numeric">
+        <button onclick="createStudentList()">Nhập</button>
     </div>
     <br>
-    <p>Họ và tên: Dương Minh Phương</p>
-    <p>Quê quán: Bắc Giang</p>
-    <p>Sở thích: Chơi thể thao, làm tình nguyện</p>
+    <button onclick="displayStudentInfo()">Hiển thị thông tin sinh viên</button>
     <br>
-</div>
+    <div id="studentList"></div>
+    <script>
+        let numStudents = 0;
+        let students = [];
+
+        function createStudentList() {
+            numStudents = parseInt(document.getElementById("numStudents").value);
+            let studentListHTML = ''; 
+            for(let i =0; i< numStudents; i++){
+                studentListHTML += `
+                <div class="student">
+                    <h3>Sinh viên ${i+1}</h3>
+                    <input type="text" placeholder="Mã sinh viên" id="studentId${i}">
+                    <input type="text" placeholder="Họ và tên" id="studentName${i}">
+                    <input type="date" id="studentDOB${i}">
+                    <input type="text" placeholder="Lớp học" id="studentClass${i}">
+                    <input type="number" step="0.01" placeholder="Điểm GPA" id="studentGPA${i}" min="0" max="10">
+                </div>`;
+            }
+            document.getElementById("studentList").innerHTML = studentListHTML;
+        }
+
+        function displayStudentInfo(){
+            let studentInfo = '';
+            for (let i = 0; i < numStudents; i++) {
+                let id = document.getElementById(`studentId${i}`).value;
+                let name = document.getElementById(`studentName${i}`).value;
+                let dob = document.getElementById(`studentDOB${i}`).value;
+                let studentClass = document.getElementById(`studentClass${i}`).value;
+                let gpa = document.getElementById(`studentGPA${i}`).value;
+                studentInfo += `
+                    <div class="student-info">
+                        <h3>Thông tin sinh viên ${i + 1}</h3>
+                        <p>Mã sinh viên: ${id}</p>
+                        <p>Họ và tên: ${name}</p>
+                        <p>Ngày sinh: ${dob}</p>
+                        <p>Lớp học: ${studentClass}</p>
+                        <p>Điểm GPA: ${gpa}</p>
+                    </div>`;
+            }
+            document.getElementById("studentList").innerHTML = studentInfo;
+        }
+    </script>
 </body>
 </html>
