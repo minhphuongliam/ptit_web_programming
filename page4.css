@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff; /* White color */
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+h2 {
+    margin-top: 0;
+    color: #c8102e; /* Red color */
+}
+
+h3 {
+    margin-top: 20px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+#reviewQuestions {
+    margin-top: 20px;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.correct-answer {
+    color: #009900; /* Green color */
+}
+
+.wrong-answer {
+    color: #ff0000; /* Red color */
+}
+
+.details {
+    margin-top: 10px;
+    font-style: italic;
+    color: #666; /* Dark gray color */
+}
+
+.logo {
+    max-width: 200px;
+    margin-bottom:20px;
+}
